@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CashDiary</title>
+<link id="pwa-manifest" rel="manifest">
+<script>
+// Inline manifest as blob — works on any hosting including GitHub Pages
+(function(){
+  var icons192 = "data:image/png;base64,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";
+  var icons512 = "data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAIAAgADASIAAhEBAxEB/8QAGgABAQEAAwEAAAAAAAAAAAAAAAkIBAUHBv/EADcQAQABAwMCBAMGBQMFAAAAAAABAgMEBQYRByEIEzEyElFhFBUlQULBIiMzYqEkUsKBorLR4f/EABoBAQEBAQEBAQAAAAAAAAAAAAAEAwIGBQH/xAAtEQEAAgECAgoDAAIDAAAAAAAAA0ECAQQRYQUGEhMUIUJDgcExgsIiUTJxkf/aAAwDAQACEQMRAD8AxkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3D0e6baJsrbeH/AKGxd1m7apry8u5RFVz45jmaaZn20x6cR68cz3YeUgYza68NNG0Wn5E31IE335BZNQr0kKr043NOoLAEygAAAAAAAAAAAAAAAAAAAAAASFV6SFU7a089DdrCTdqfpD0/P09V1R979f6AHznswABhJu1hJ9Ho/wBXx9vGdbvZ/b+RXpIVXpRuaeVgt1Ov7Z25r+PVj65oOl6naqjiacvFoux/3RLOnWnwnaHqeHf1XpxV91ajTE1/dt65NWNf+lFVXM26p+szT6R/DHdqEYY55Y/htljpl+UkNX07P0jVMnS9UxL2Hm4tybV+xdp+Gu3VHrEw4jbPjs6YY2p7Zp6j6VjU0ajpvwWtS+Cnvfx5mKaa5+dVEzEc/wC2Z57UwxMuwz7enFHnj2deAA7cgAAAAAAAAAAAAAAACkCb6kDCem0Nib6kCb5BZNQr0kKr043NOoLAEygAAAAAAAAAAAAAAAAAAAAAASFV6SFU7a089DdrCTdqfpD0/P09V1R979f6AHznswABhJu1hJ9Ho/1fH28Z1u9n9v5FekhVelG5p5WCwBModRvPSLOv7Q1jQ79MVWtQwb2NVE/30TT+6TivSQqrbWnnoAUpwAAAAAAAAAAAAAAABSBN9SBhPTaGxN9SBN8gsmoV6SFV6cbmnUFgCZQJsdf+r+4+o278/wDE8mxt6zeqt4GBauTTa8umeKa66Y91dUd5meeOeI7KTpsdf+j+4+nW78+Y0zJv7evXqrmBn2rc1WvLqnmmiuqPbXT6TE8c8cx2b7fhx82M3Hh5PLAFiUAAAAAAAAAAAAAB6n4f+r+4+nW78CJ1PJv7evX6befgXbk1WvLqniquimfbXT6xMcc8cT2UnTZ8P/R/cfUXd+BM6Zk2NvWb9NzPz7tuabXl0zzNFFU+6ur0iI5455nspMj3HDj5KoePDzAGDYSFV6SFU7a089DdrCTdqfpD0/P09V1R979f6AHznswABhJu1hJ9Ho/1fH28Z1u9n9v5FekhVelG5p5WCwBMoEhVekhVO2tPPQAqTgAAAAAAAAAAAAAAACkCb6kDCem0Nib6kCb5BZNQr0kKr043NOoLAEygAAAAAAAAAAAAAAAAAAAAAASFV6SFU7a089DdrCTdqfpD0/P09V1R979f6AHznswABhJu1hJ9Ho/1fH28Z1u9n9v5FekhVelG5p5WCwBMoEhVekhVO2tPPQAqTgAAAAAAAAAAAAAAACkCb6kDCem0Nib6kCb5BZNQr0kKr043NOoLAEygTY6/9X9x9Rt35/4nk2NvWb1VvAwLVyabXl0zxTXXTHurqjvMzzxzxHZSdNjr/wBH9x9Ot358xpmTf29evVXMDPtW5qteXVPNNFdUe2un0mJ4545js32/Dj5sZuPDyeWALEoAAAAAAAAAAAAAD1Pw/wDV/cfTrd+BE6nk39vXr9NvPwLtyarXl1TxVXRTPtrp9YmOOeOJ7KTps+H/AKP7j6i7vwJnTMmxt6zfpuZ+fdtzTa8umeZooqn3V1ekRHPHPM9lJke44cfJVDx4eYAwbCQqvSQqnbWnnobtYSbtT9Ien5+nquqPvfr/AEAPnPZgADCTdrCT6PR/q+Pt4zrd7P7fyK9JCq9KNzTysFgCZQJCq9JCqdtaeegBUnAAAAAAAAAAAAAAAAFIE31IGE9NobE31IE3yCyahXpIVXpxuadQWAJlAAAAAAAAAAAAAAAAAAAAAAAkKr0kKp21p56G7WEm7U/SHp+fp6rqj736/wBAD5z2YAAwk3awk+j0f6vj7eM63ez+38ivSQqvSjc08rBYAmUCQqvSQqnbWnnoAVJwAAAAAAAAAAAAAAABSBN9SBhPTaGxN9SBN8gsmoV6SFV6cbmnUFgCZQJsdf8Aq/uPqNu/P/E8mxt6zeqt4GBauTTa8umeKa66Y91dUd5meeOeI7KTpsdf+j+4+nW78+Y0zJv7evXqrmBn2rc1WvLqnmmiuqPbXT6TE8c8cx2b7fhx82M3Hh5PLAFiUAAAAAAAAAAAAAB6n4f+r+4+nW78CJ1PJv7evX6befgXbk1WvLqniquimfbXT6xMcc8cT2UnTZ8P/R/cfUXd+BM6Zk2NvWb9NzPz7tuabXl0zzNFFU+6ur0iI5455nspMj3HDj5KoePDzAGDYSFV6SFU7a089DdrCTdqfpD0/P09V1R979f6AHznswABhJu1hJ9Ho/1fH28Z1u9n9v5FekhVelG5p5WCwBMoEhVekhVO2tPPQAqTgAAAAAAAAAAAAAAACkCb6kDCem0Nib6kCb5BZNQr0kKr043NOoLAEygAAAAAAAAAAAAAAAAAAAAAASFV6SFU7a089DdrCTdqfpD0/P09V1R979f6B8xv/fGh7M0/z9SveZk3InyMS3MTcuz+1P1n/M9mZN+b93Bu/NquZ2VXYw4n+Vh2api1RH1j9U/Wf8R2TQ7bKXz/ABo+10l03Bsf8f8All/rT7/02EMe7E37uHaGbTcwcqu9iTP83DvVTNquPpH6Z+sf5js010/3zoe88DztOveXlUUxN/EuTHmW/r/dT/dH+J7E22yi8/zodG9Nwb7/AB/45f61+tbfUMJN2sJKej/V8fb4vW72f2/kV6SFV6UbmnlYLAEygSFV6SFU7a089ACpOAAAAAAAAAAAAAAAAKQJvqQMJ6bQ2JvqQJvkFk1CvSQqvTjc06gsATKAAAAAAAAAAAAAAAAAAAAAABIVXpIVTtrTz0NK9VOsGDoPm6Vt2q1n6pHNNy97rOPP/Kr6ekfn8mahpJDjJrprlSjZ9JTbOPPGLy1y4ef+uHH8f+uVquo52q6hdz9SyruVlXqviru3KuZn/wCfT8nFGjfDz4ZtW3h9n3FvejI0jQKuLlnF4+DJzafy9f6dE/Oe8x6RHMVNMstMNPNF/lnlx/OrOTlaVqGdpWfaz9OyruLlWavit3bdXExP/r6fm0L4hvDLq20ftG4tjUZOr6DHNd7E4+PJw6f+ne5RHzj+KI9YniamcDHLTPTyOGWGXH8atKdK+sGFr3laTuOq1g6nPFNu/wC2zkT/AMap+XpP5fJmsGccOMeuuuNrd50lNvI8MJfPXHj5/wC+PD8/+CvSQqvTPc0ngsATKBIVXpIVTtrTz0AKk4AAAAAAAAAAAAAAAApAm+pAwnptDYm+pAm+QWTUK9JCq9ONzTqCwBMoAAAAAAAAAAAAAAAAAAAAAAEhVek1+v3SDcfTnd2f+GZN/b129VcwM+3bmq15czzTRXVHtrpjtMTxzxzHZRt9dNNddGE+muummry12G3tF1bcOsY+j6Jp+RqGfk1fBZsWKPiqqn9oj1mZ7RHeX2nSDo7vTqXqtuzpOn3MTTImPP1PJt1U49un8+J/XV8qae/z4ju3v0a6S7T6XaN9l0PF87ULtERl6lfpib9+flz+mjn0pjt8+Z7tpJdMP+2WEeuTzDw8+GbSdofZ9xb4ox9X1+OLlnE4+PGw6vy+lyuPnP8ADE+kTxFTRwI8stcteOqvHHTHThoM5eIbwzaRvD7RuLZFGNpGv1c3L2Nx8GNmT+fp/Trn5x2mfWO81NGhjlrjrx0MsdMtOGqSu4tE1bbus5Gj65p+Rp+oY1Xw3rF+j4aqZ/eJ9YmO0x3h16nfWXpNtTqjo32TXMbyc+zTMYeo2IiL+PPy5/VRz60z2+XE92COr/R3efTTVblnVtPuZemzM+RqeNbqqx7tP5cz+ir501d/lzHdZHLpn/2kzj1xedq9JseH/pBuLqNu/AmdMybO3rN+i5n51y3NNry4nmqiiqfdXVHaIjnjnmeyk7Hca6a66aNYNNeGuoAnbiQqvSQqnbWnnoAVJwAAAAAAAAAAAAAAABSBN9SBhPTaGxN9SBN8gsmoV6SFV6cbmnUFgCZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJCq9JCqdtaeegBUnAAAAAAAAAAAAAAAAFIE31IGE9NobE31IE3yCyahXpIVXpxuadQWAJlAAAAAAAAAAAAAAAAAAAAAAACbHX/q/uPqNu/P/ABPJsbes36reBgWrk02vLpnimuumPdXVHeZnnjniOzSOPXPVxnnphopOJCjXw3Nl3/JXoSFDw3M7/kr0JCh4bmd/yV6EhQ8NzO/5K9CQoeG5nf8AJXoSFDw3M7/kr0kKDWOPscfNnJJ2wBqzAAAAAAAAAAAAAAAAFIE31IGE9NobE31IE3yCyahXpIVXpxuadQWAJlAAAAAAAAAAAAAAAAAAAAAAAkKr0kKp21p56AUgbZ59llhh2k3xSBN8wz7Rnh2QFVySTscPJ+4YdpKgVXGXiOTvuOaVAquHiOR3HNKgVXDxHI7jmlQKrh4jkdxzSoFC+unSnb+/9qZ0/d2PZ16zZquYWbbtxTc8yI5iiuY91E+kxPPHPMd09G0cmmejPPDXHUAduAAAAAAAAAAAAAABSBN9SBhPTaGxN9SBN8gsmoV6SFV6cbmnUFgCZQAAAAAAAAAAAAAAAAAAAAAAJCq9JCqdtaeehSBN9SB3PTmGxN9SBN8gsmoVXSoVXc7in7BYAmbgAAJ59c+q24N/7qzvxHIs6DavVW8LCt3Jpt+XE8RXVEe6ufWZnnjniOzTDDXPVznnpjooYJ59C+q24NgbrwY+8ci9oN29TbzcK5cmq35czxNdMT7a49YmOOeOJ7KGGceuGphnploJUKrpUNdvbKegBSwAAAAAAAAAAAAAAFIE31IGE9NobE31IE3yCyahXpIVXpxuadQWAJlAAAAAAAAAAAAAAAAAAAAAAAkKr0kKp21p56FIE31IHc9OYbE31IE3yCyahVdKhVdzuKfsFgCZuAAJ59c+lG4Ngbqzvw7Iv6DdvVXMLNt25qt+XM8xRXMe2uPSYnjnjmOyhg0wz1w1c54aZaJ6dC+lG4N/7rwZnTsixoNm9Tczc25bmm35cTzNFEz7q59IiOeOeZ7KFgZya56mGGmOglQqulQ129sp6AFLAAAAAAAAAAAAAAAUgTfUgYT02hsTfUgTfILJqFekhVenG5p1BYAmUAAAAAAAAAAAAAAAAAAAAAACQqvSQqnbWnnoUgTfG2eHaZYZ9lSBN8DDDsmefaFV0qAkj7fDzfuGfZVXEqBl4fm77/kquJUB4fmd/wAlVxKgPD8zv+Sq4lQHh+Z3/JQvrp1X2/sDamdEajj39evWareFhW7kVXPMmOIrriPbRHrMzxzxxHdPQG0eGmGjPPPXLUAduAAAAAAAAAAAAAABSBN9SBhPTaGxN9SBN8gsmoV6SFV6cbmnUFgCZQAAAAAAAAAAAAAAAAAAAAAAJsdf+j+4+nW78+Y0zJv7evXqrmBn2rc1WvLqnmmiuqPbXT6TE8c8cx2UnGkcmuGrjPDTPRIUV6GvieTLuOaQor0HieR3HNIUV6DxPI7jmkKK9B4nkdxzSFFeg8TyO45pCivQeJ5Hcc0hRXpIVrHJ2+Pkzkj7AA1ZgAAAAAAAAAAAAAAACkCb6kDCem0Nib6kCb5BZNQr0kKr043NOoLAEygAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASFV6SFU7a089ACpOAAAAAAAAAAAAAAAAKQJvqQMJ6bQ2JvqQJvkFk1CvSQqvTjc06gsATKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIVXpIVTtrTz0AKk4AAAAAAAAAAAAAAAApAm+pAwnptDYm+pAm+QWTUK9JCq9ONzTqCwBMoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEhVekhVO2tPPQAqTgAAAAAAAAAAAAAAACkCb6kDCem0Nib6kCb5BZNQr0kKr043NOoLAEygAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASFV6SFU7a089ACpOAAAAAAAAAAAAAAAAKQJvqQMJ6bQ2JvqQJvkFk1CvSQqvTjc06gsATKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIVXpIVTtrTz0AKk4AAAAAAAAAAAAAAAApAm+pAwnptDYm+pAm+QWTUK9JCq9ONzTqCwBMoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEhVekhVO2tPPQAqTgAAAAAAAAAAAAAAACkCb6kDCem0Nib6kCb5BZNQr0kKr043NOoLAEygAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASFV6SFU7a089ACpOAAAAAAAAAAAAAAAAKQJvqQMJ6bQ2JvqQJvkFk1CvSQqvTjc06gsATKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIVXpIVTtrTz0AKk4AAAAAAAAAAAAAAAApAm+pAwnptDYm+pAm+QWTUK9JCq9ONzTqCwBMoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEhVekhVO2tPPQAqTgAAAAAAAAAAAAAAACkCb6kDCem0Nib6kCb5BZNQr0kKr043NOoLAEygAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASFVj3pq9nQNoazrl+qKbWn4N7Jqmf7KJq/ZJxVtrTz0AKU4AAAAAAAAAAAAAAAApAm+3D0e6k6JvXbeJE51izrNq1TRl4lyuKa/jiOJqpifdTPrzHPHPE92M2mvDTVtFr+X36b6kCb78gsmoV6SFV6cbmnUFgCZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADqNf3PtvQMeq/rmv6XplqmOZqysui1/5TDOnWnxY6HpuJf0rpvT966jVE0feV63NONY+tFNXE3Ko+sRT6T/ABR2dY4ZZfhzllpj+Tx2dT8bTdtU9N9Kyaa9R1H4LupfBP8AQx4mKqaJ+VVcxE8f7YnntVDE7l6vqOfq+qZOqapl3szNyrk3b9+7V8VdyqfWZlxF2GHY04I88u1rxAHbkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//Z";
+  var manifest = {
+    name:"CashDiary",short_name:"CashDiary",
+    description:"Personal & Professional Cash Tracker",
+    start_url:location.href.split('#')[0],
+    scope:location.href.split('#')[0].replace(/[^/]*$/,''),
+    display:"standalone",orientation:"portrait-primary",
+    background_color:"#0b0e1a",theme_color:"#0b0e1a",
+    icons:[
+      {src:icons192,sizes:"192x192",type:"image/png",purpose:"any"},
+      {src:icons192,sizes:"192x192",type:"image/png",purpose:"maskable"},
+      {src:icons512,sizes:"512x512",type:"image/png",purpose:"any"},
+      {src:icons512,sizes:"512x512",type:"image/png",purpose:"maskable"}
+    ],
+    categories:["finance","productivity"],
+    prefer_related_applications:false
+  };
+  var blob = new Blob([JSON.stringify(manifest)],{type:'application/manifest+json'});
+  document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+})();
+</script>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CashDiary">
+<meta name="theme-color" content="#0b0e1a">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root {
+  --bg:#0b0e1a; --surf:#131726; --surf2:#1a1f35; --surf3:#212740;
+  --border:#262d4a; --border2:#2f3860;
+  --text:#eef0fc; --text2:#8892c0; --text3:#4a5280;
+  --accent:#3d7fff; --accent-glow:rgba(61,127,255,0.25);
+  --green:#00c98d; --green-bg:rgba(0,201,141,0.1);
+  --red:#ff5c6e; --red-bg:rgba(255,92,110,0.1);
+  --gold:#ffc84a; --gold-bg:rgba(255,200,74,0.1);
+  --purple:#a374ff;
+  --r:16px; --r-sm:10px; --r-xs:8px;
+  --shadow:0 8px 32px rgba(0,0,0,0.5);
+  --transition:0.25s cubic-bezier(0.4,0,0.2,1);
+}
+.light {
+  --bg:#f2f4fb; --surf:#ffffff; --surf2:#eef0f9; --surf3:#e4e8f5;
+  --border:#dde2f5; --border2:#c8d0ee;
+  --text:#111428; --text2:#5560a0; --text3:#8890c0;
+  --accent-glow:rgba(61,127,255,0.12);
+  --shadow:0 4px 24px rgba(61,127,255,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);}
+
+/* ─── SCROLLABLE WRAPPER ─── */
+#root{display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto;position:relative;overflow:hidden;}
+
+/* ─── PIN SCREEN ─── */
+#pin-screen{
+  position:absolute;inset:0;background:var(--bg);z-index:999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:32px;
+  animation:fadeUp 0.4s ease;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.pin-brand{text-align:center;}
+.pin-brand-logo{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--text);letter-spacing:-1px;}
+.pin-brand-logo span{color:var(--accent);}
+.pin-brand-sub{font-size:0.8rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+.pin-label{font-size:0.9rem;color:var(--text2);font-weight:500;}
+.pin-dots{display:flex;gap:14px;}
+.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border2);background:transparent;transition:all 0.2s;}
+.pin-dot.filled{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px var(--accent-glow);}
+.pin-dot.error{background:var(--red);border-color:var(--red);}
+.pin-error{font-size:0.82rem;color:var(--red);min-height:18px;text-align:center;}
+.pin-hint{font-size:0.8rem;color:var(--text3);text-align:center;max-width:240px;line-height:1.5;}
+.pin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:270px;}
+.pin-key{
+  aspect-ratio:1;border-radius:14px;border:1px solid var(--border);background:var(--surf);
+  color:var(--text);font-family:'Hind Siliguri',sans-serif;font-size:1.6rem;font-weight:600;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;user-select:none;
+}
+.pin-key:active{background:var(--accent);border-color:var(--accent);color:#fff;transform:scale(0.93);}
+.pin-key.sym{font-size:1rem;color:var(--text2);}
+
+/* ─── ACCOUNT SWITCHER ─── */
+#acct-screen{
+  position:absolute;inset:0;background:var(--bg);z-index:998;
+  display:none;flex-direction:column;padding:0;overflow-y:auto;
+  animation:fadeUp 0.35s ease;
+}
+#acct-screen.show{display:flex;}
+.acct-header{padding:24px 20px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.acct-header-title{font-family:'Playfair Display',serif;font-size:1.3rem;}
+.acct-grid{padding:20px;display:flex;flex-direction:column;gap:12px;}
+.acct-card{
+  background:var(--surf);border:1px solid var(--border);border-radius:20px;
+  padding:18px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;
+  transition:all var(--transition);position:relative;overflow:hidden;
+}
+.acct-card::before{content:'';position:absolute;inset:0;background:var(--accent);opacity:0;transition:opacity 0.2s;}
+.acct-card:active::before{opacity:0.06;}
+.acct-card.active-acct{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 4px 20px var(--accent-glow);}
+.acct-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.acct-info{flex:1;min-width:0;}
+.acct-name{font-weight:700;font-size:1rem;}
+.acct-balance{font-size:0.82rem;color:var(--text2);margin-top:2px;}
+.acct-check{font-size:1.2rem;color:var(--accent);}
+.acct-add-btn{
+  margin:0 20px 20px;padding:16px;border-radius:16px;
+  border:2px dashed var(--border2);background:transparent;color:var(--text2);
+  font-family:'Hind Siliguri',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s;
+}
+.acct-add-btn:active{border-color:var(--accent);color:var(--accent);}
+
+/* ─── MAIN APP ─── */
+#app{display:none;flex-direction:column;height:100%;overflow:hidden;}
+#app.show{display:flex;}
+
+/* ─── HEADER ─── */
+.header{
+  padding:14px 16px 12px;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--border);flex-shrink:0;
+  background:var(--bg);position:relative;z-index:10;
+}
+.header-acct-btn{
+  display:flex;align-items:center;gap:8px;background:var(--surf);
+  border:1px solid var(--border);border-radius:10px;padding:7px 12px;cursor:pointer;
+  transition:all 0.2s;flex:1;min-width:0;
+}
+.header-acct-btn:active{border-color:var(--accent);}
+.header-acct-icon{font-size:1rem;flex-shrink:0;}
+.header-acct-name{font-size:0.88rem;font-weight:700;truncate:ellipsis;white-space:nowrap;overflow:hidden;}
+.header-acct-arrow{font-size:0.7rem;color:var(--text3);flex-shrink:0;}
+.hdr-btn{
+  width:38px;height:38px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surf);color:var(--text2);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1rem;transition:all 0.2s;flex-shrink:0;
+}
+.hdr-btn:active{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* ─── CONTENT SCROLL ─── */
+.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;}
+
+/* ─── SUMMARY CARD ─── */
+.summary{
+  margin:14px;border-radius:22px;padding:22px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0d1f6e 0%,#1a3da8 50%,#0e2870 100%);
+  box-shadow:0 8px 40px rgba(26,61,168,0.4);
+}
+.light .summary{background:linear-gradient(135deg,#1a3da8,#3d7fff,#2563eb);box-shadow:0 8px 40px rgba(61,127,255,0.25);}
+.summary::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.summary::after{content:'';position:absolute;bottom:-70px;left:-30px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.03);}
+.summary-label{font-size:0.72rem;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:1.5px;}
+.summary-balance{font-family:'Playfair Display',serif;font-size:2.8rem;color:#fff;margin:4px 0 18px;line-height:1;word-break:break-all;}
+.summary-row{display:flex;gap:10px;position:relative;z-index:1;}
+.summary-box{flex:1;background:rgba(255,255,255,0.1);border-radius:12px;padding:11px 13px;backdrop-filter:blur(4px);}
+.summary-box-lbl{font-size:0.68rem;color:rgba(255,255,255,0.65);font-weight:500;}
+.summary-box-val{font-size:1rem;font-weight:700;color:#fff;margin-top:3px;}
+.summary-box-val.in{color:#8fffd4;}
+.summary-box-val.out{color:#ffb3be;}
+
+/* ─── TABS ─── */
+.tabs{display:flex;margin:0 14px 14px;background:var(--surf);border-radius:12px;padding:4px;border:1px solid var(--border);}
+.tab{flex:1;padding:9px 6px;text-align:center;border-radius:9px;font-size:0.78rem;font-weight:600;color:var(--text2);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.tab.active{background:var(--accent);color:#fff;box-shadow:0 2px 10px var(--accent-glow);}
+
+/* ─── SECTIONS ─── */
+.sec{padding:0 14px 14px;}
+.sec-title{font-size:0.7rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:10px;}
+
+/* ─── ADD FORM ─── */
+.form-card{background:var(--surf);border-radius:var(--r);padding:16px;border:1px solid var(--border);}
+.type-row{display:flex;gap:8px;margin-bottom:14px;}
+.type-btn{flex:1;padding:10px;border-radius:10px;font-weight:700;font-size:0.88rem;cursor:pointer;border:2px solid var(--border);background:transparent;color:var(--text2);transition:all 0.2s;font-family:'Hind Siliguri',sans-serif;}
+.type-btn.in.act{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+.type-btn.out.act{background:var(--red-bg);border-color:var(--red);color:var(--red);}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.flabel{font-size:0.68rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;}
+.finput{
+  width:100%;background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-xs);
+  padding:11px 13px;color:var(--text);font-family:'Hind Siliguri',sans-serif;font-size:0.95rem;
+  outline:none;transition:border-color 0.2s;
+}
+.finput:focus{border-color:var(--accent);}
+.finput::placeholder{color:var(--text3);}
+.submit-btn{
+  width:100%;padding:14px;border-radius:12px;background:var(--accent);color:#fff;
+  font-family:'Hind Siliguri',sans-serif;font-size:1rem;font-weight:700;border:none;
+  cursor:pointer;transition:all 0.2s;box-shadow:0 4px 16px var(--accent-glow);
+}
+.submit-btn:active{transform:scale(0.98);opacity:0.9;}
+
+/* ─── ENTRY CARD ─── */
+.entry{
+  background:var(--surf);border-radius:var(--r-sm);border:1px solid var(--border);
+  padding:13px 14px;margin-bottom:9px;display:flex;align-items:flex-start;gap:11px;
+  animation:slideIn 0.3s ease;
+}
+@keyframes slideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.e-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.e-icon.in{background:var(--green-bg);color:var(--green);}
+.e-icon.out{background:var(--red-bg);color:var(--red);}
+.e-body{flex:1;min-width:0;}
+.e-detail{font-size:0.9rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.e-date{font-size:0.72rem;color:var(--text3);margin-top:2px;}
+.e-person{font-size:0.72rem;color:var(--accent);margin-top:2px;font-weight:500;}
+.e-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;}
+.e-amt{font-size:0.97rem;font-weight:700;}
+.e-amt.in{color:var(--green);}
+.e-amt.out{color:var(--red);}
+.e-actions{display:flex;gap:4px;}
+.e-btn{width:28px;height:28px;border:none;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.8rem;transition:all 0.15s;}
+.e-btn.edit{background:var(--surf2);color:var(--text2);}
+.e-btn.del{background:var(--red-bg);color:var(--red);}
+.e-btn:active{transform:scale(0.9);}
+
+/* ─── MONTHLY ─── */
+.month-card{background:var(--surf);border-radius:var(--r);border:1px solid var(--border);margin-bottom:10px;overflow:hidden;}
+.month-hdr{padding:14px 16px;display:flex;align-items:center;cursor:pointer;gap:10px;}
+.month-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:var(--surf2);}
+.month-info{flex:1;}
+.month-name{font-weight:700;font-size:0.95rem;}
+.month-nums{font-size:0.75rem;color:var(--text2);margin-top:2px;}
+.month-nums span.in{color:var(--green);}
+.month-nums span.out{color:var(--red);}
+.month-net{font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.month-chev{color:var(--text3);font-size:0.8rem;transition:transform 0.3s;flex-shrink:0;}
+.month-card.open .month-chev{transform:rotate(180deg);}
+.month-dates{display:none;border-top:1px solid var(--border);}
+.month-card.open .month-dates{display:block;}
+.date-row{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;cursor:pointer;transition:background 0.15s;}
+.date-row:last-child{border-bottom:none;}
+.date-row:active{background:var(--surf2);}
+.date-lbl{font-size:0.88rem;font-weight:600;flex:1;}
+.date-cnt{font-size:0.72rem;color:var(--text3);margin-top:2px;}
+.date-net{font-size:0.88rem;font-weight:700;}
+
+/* ─── SEARCH ─── */
+.search-wrap{position:relative;margin-bottom:12px;}
+.search-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:0.95rem;pointer-events:none;}
+.search-in{width:100%;padding:12px 14px 12px 40px;border-radius:12px;background:var(--surf);border:1px solid var(--border);color:var(--text);font-family:'Hind Siliguri',sans-serif;font-size:0.92rem;outline:none;}
+.search-in:focus{border-color:var(--accent);}
+.search-type-row{display:flex;gap:8px;margin-bottom:14px;}
+.stbtn{padding:8px 14px;border-radius:8px;font-size:0.8rem;font-weight:700;border:1px solid var(--border);background:var(--surf);color:var(--text2);cursor:pointer;font-family:'Hind Siliguri',sans-serif;transition:all 0.2s;}
+.stbtn.act{background:var(--purple);border-color:var(--purple);color:#fff;}
+.person-card{background:var(--surf);border-radius:var(--r);border:1px solid var(--border);padding:16px;margin-bottom:12px;}
+.person-nm{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:10px;}
+.person-stats{display:flex;gap:8px;}
+.pstat{flex:1;background:var(--surf2);border-radius:9px;padding:10px;}
+.pstat-lbl{font-size:0.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;}
+.pstat-val{font-size:0.97rem;font-weight:700;margin-top:3px;}
+
+/* ─── MODALS ─── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.overlay.show{opacity:1;pointer-events:all;}
+.sheet{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);
+  width:100%;max-width:480px;background:var(--bg);border-radius:24px 24px 0 0;
+  padding:20px 20px 32px;z-index:201;max-height:90vh;overflow-y:auto;
+  transition:transform 0.38s cubic-bezier(0.34,1.2,0.64,1);
+}
+.overlay.show .sheet{transform:translateX(-50%) translateY(0);}
+.sheet-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 18px;}
+.sheet-title{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:4px;}
+.sheet-sub{font-size:0.8rem;color:var(--text2);margin-bottom:16px;}
+.modal-sum{display:flex;gap:8px;margin-bottom:16px;}
+.ms-box{flex:1;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:10px;}
+.ms-lbl{font-size:0.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;}
+.ms-val{font-size:0.97rem;font-weight:700;margin-top:3px;}
+.share-btn{width:100%;margin-top:14px;padding:13px;border-radius:12px;background:linear-gradient(135deg,var(--purple),var(--accent));color:#fff;font-family:'Hind Siliguri',sans-serif;font-size:0.9rem;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.close-btn{width:100%;margin-top:8px;padding:12px;border-radius:12px;background:var(--surf);color:var(--text2);font-family:'Hind Siliguri',sans-serif;font-size:0.9rem;font-weight:600;border:1px solid var(--border);cursor:pointer;}
+
+/* ─── BACKUP SHEET ─── */
+.bk-btn{width:100%;padding:14px 16px;border-radius:12px;margin-bottom:9px;background:var(--surf);border:1px solid var(--border);color:var(--text);font-family:'Hind Siliguri',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all 0.18s;}
+.bk-btn:active{background:var(--surf2);}
+.bk-icon{font-size:1.25rem;width:32px;text-align:center;}
+
+/* ─── EDIT SHEET ─── */
+.edit-type-row{display:flex;gap:8px;margin-bottom:14px;}
+
+/* ─── BOTTOM NAV ─── */
+.bottom-nav{display:flex;border-top:1px solid var(--border);background:var(--bg);flex-shrink:0;padding-bottom:env(safe-area-inset-bottom,0);}
+.nav-it{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0;cursor:pointer;color:var(--text3);transition:color 0.2s;}
+.nav-it.act{color:var(--accent);}
+.nav-ico{font-size:1.25rem;}
+.nav-lbl{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;}
+
+/* ─── EMPTY ─── */
+.empty{text-align:center;padding:36px 20px;color:var(--text3);font-size:0.88rem;}
+.empty-ico{font-size:2rem;margin-bottom:8px;}
+
+/* ─── BADGE ─── */
+.badge{display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;border-radius:6px;padding:2px 7px;font-size:0.68rem;font-weight:700;margin-left:6px;min-width:20px;}
+
+/* ─── TOAST ─── */
+.toast{position:fixed;top:70px;left:50%;transform:translateX(-50%) translateY(-14px);background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:9px 18px;font-size:0.83rem;font-weight:600;z-index:999;opacity:0;pointer-events:none;transition:all 0.3s;white-space:nowrap;box-shadow:var(--shadow);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ─── ACCT COLOR THEMES ─── */
+.acct-icon.personal{background:linear-gradient(135deg,#3d7fff22,#3d7fff44);color:var(--accent);}
+.acct-icon.professional{background:linear-gradient(135deg,#00c98d22,#00c98d44);color:var(--green);}
+.acct-icon.custom{background:linear-gradient(135deg,#a374ff22,#a374ff44);color:var(--purple);}
+
+/* ─── SHARE CANVAS ─── */
+#share-el{position:fixed;left:-9999px;top:0;z-index:-1;}
+
+/* ─── ADD ACCOUNT SHEET ─── */
+.acct-color-row{display:flex;gap:8px;margin-bottom:14px;}
+.color-opt{width:36px;height:36px;border-radius:10px;cursor:pointer;border:3px solid transparent;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
+.color-opt.sel{border-color:var(--text);}
+
+select.finput{appearance:none;-webkit-appearance:none;}
+
+/* ─── INSTALL BANNER ─── */
+#install-banner{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);
+  width:100%;max-width:480px;z-index:500;
+  background:var(--surf);border-top:1px solid var(--border);
+  padding:14px 16px 20px;display:flex;align-items:center;gap:12px;
+  transition:transform 0.4s cubic-bezier(0.34,1.2,0.64,1);
+  box-shadow:0 -4px 24px rgba(0,0,0,0.3);
+}
+#install-banner.show{transform:translateX(-50%) translateY(0);}
+.install-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#1a3da8,#3d7fff);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.install-text{flex:1;}
+.install-title{font-weight:700;font-size:0.9rem;}
+.install-sub{font-size:0.75rem;color:var(--text2);margin-top:1px;}
+.install-btn{padding:9px 16px;border-radius:10px;background:var(--accent);color:#fff;font-family:'Hind Siliguri',sans-serif;font-size:0.82rem;font-weight:700;border:none;cursor:pointer;white-space:nowrap;box-shadow:0 2px 10px var(--accent-glow);}
+.install-close{background:none;border:none;color:var(--text3);font-size:1.1rem;cursor:pointer;padding:4px;flex-shrink:0;}
+
+/* ─── OFFLINE BADGE ─── */
+#offline-badge{
+  position:fixed;top:8px;left:50%;transform:translateX(-50%);
+  background:#ff5c6e;color:#fff;padding:5px 14px;border-radius:20px;
+  font-size:0.75rem;font-weight:700;z-index:600;display:none;
+  box-shadow:0 2px 12px rgba(255,92,110,0.4);
+}
+</style>
+</head>
+<body>
+<div id="root">
+
+<!-- ══════════════ PIN SCREEN ══════════════ -->
+<div id="pin-screen">
+  <div class="pin-brand">
+    <div class="pin-brand-logo">Cash<span>Diary</span></div>
+    <div class="pin-brand-sub">Your financial notebook</div>
+  </div>
+  <div class="pin-label" id="pin-label">Enter your PIN</div>
+  <div class="pin-dots">
+    <div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div>
+    <div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div>
+  </div>
+  <div class="pin-error" id="pin-error"></div>
+  <div class="pin-hint" id="pin-hint"></div>
+  <div class="pin-grid">
+    <button class="pin-key" onclick="pk('1')">1</button>
+    <button class="pin-key" onclick="pk('2')">2</button>
+    <button class="pin-key" onclick="pk('3')">3</button>
+    <button class="pin-key" onclick="pk('4')">4</button>
+    <button class="pin-key" onclick="pk('5')">5</button>
+    <button class="pin-key" onclick="pk('6')">6</button>
+    <button class="pin-key" onclick="pk('7')">7</button>
+    <button class="pin-key" onclick="pk('8')">8</button>
+    <button class="pin-key" onclick="pk('9')">9</button>
+    <button class="pin-key sym" onclick="pk('reset')">Reset</button>
+    <button class="pin-key" onclick="pk('0')">0</button>
+    <button class="pin-key sym" onclick="pk('del')">⌫</button>
+  </div>
+</div>
+
+<!-- ══════════════ ACCOUNT SCREEN ══════════════ -->
+<div id="acct-screen">
+  <div class="acct-header">
+    <div class="acct-header-title">Switch Account</div>
+    <div class="hdr-btn" onclick="closeAcctScreen()">✕</div>
+  </div>
+  <div class="acct-grid" id="acct-list"></div>
+  <button class="acct-add-btn" onclick="openAddAcct()">＋ Add New Account</button>
+</div>
+
+<!-- ══════════════ MAIN APP ══════════════ -->
+<div id="app">
+  <div class="header">
+    <div class="header-acct-btn" onclick="openAcctScreen()">
+      <div class="header-acct-icon" id="hdr-acct-icon">👤</div>
+      <div class="header-acct-name" id="hdr-acct-name">Personal</div>
+      <div class="header-acct-arrow">▾</div>
+    </div>
+    <div class="hdr-btn" onclick="toggleTheme()" id="theme-btn">☀️</div>
+    <div class="hdr-btn" onclick="openBackup()">💾</div>
+  </div>
+
+  <div class="content" id="main-content">
+    <!-- HOME -->
+    <div id="tab-home">
+      <div class="summary" id="summary-card" style="margin:14px">
+        <div class="summary-label" id="sum-acct-lbl">PERSONAL ACCOUNT</div>
+        <div class="summary-balance" id="sum-balance">৳০</div>
+        <div class="summary-row">
+          <div class="summary-box"><div class="summary-box-lbl">💰 Cash In</div><div class="summary-box-val in" id="sum-in">৳০</div></div>
+          <div class="summary-box"><div class="summary-box-lbl">💸 Cash Out</div><div class="summary-box-val out" id="sum-out">৳০</div></div>
+        </div>
+      </div>
+
+      <div style="padding:0 14px 14px">
+        <div class="sec-title">নতুন এন্ট্রি / Add Entry</div>
+        <div class="form-card">
+          <div class="type-row">
+            <button class="type-btn in act" id="tbtn-in" onclick="setType('in')">↑ Cash In</button>
+            <button class="type-btn out" id="tbtn-out" onclick="setType('out')">↓ Cash Out</button>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><div class="flabel">তারিখ / Date</div><input type="date" class="finput" id="f-date"></div>
+            <div class="fg"><div class="flabel">পরিমাণ / Amount ৳</div><input type="number" class="finput" id="f-amount" placeholder="0.00" inputmode="decimal"></div>
+          </div>
+          <div class="fg"><div class="flabel">ব্যক্তি / Person (optional)</div><input type="text" class="finput" id="f-person" placeholder="যেমনঃ রহিম, Client ABC"></div>
+          <div class="fg" style="margin-top:10px"><div class="flabel">বিবরণ / Details</div><input type="text" class="finput" id="f-detail" placeholder="যেমনঃ বেতন, ভাড়া, Salary..."></div>
+          <button class="submit-btn" style="margin-top:14px" onclick="addEntry()">এন্ট্রি যোগ করুন / Add Entry</button>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-title">আজকের এন্ট্রি / Today's Entries</div>
+        <div id="today-list"></div>
+      </div>
+    </div>
+
+    <!-- HISTORY -->
+    <div id="tab-history" style="display:none">
+      <div class="sec" style="padding-top:14px">
+        <div class="sec-title">মাসিক ইতিহাস / Monthly History</div>
+        <div id="monthly-list"></div>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div id="tab-search" style="display:none">
+      <div class="sec" style="padding-top:14px">
+        <div class="search-type-row">
+          <button class="stbtn act" id="st-date" onclick="setST('date')">📅 তারিখে / By Date</button>
+          <button class="stbtn" id="st-name" onclick="setST('name')">👤 নামে / By Person</button>
+        </div>
+        <div class="search-wrap">
+          <span class="search-ico">🔍</span>
+          <input type="text" class="search-in" id="s-input" placeholder="তারিখ লিখুন / Enter date..." oninput="doSearch()">
+        </div>
+        <div id="s-results"><div class="empty"><div class="empty-ico">🔍</div>Search করুন</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-it act" id="nav-home" onclick="switchTab('home')"><div class="nav-ico">🏠</div><div class="nav-lbl">Home</div></div>
+    <div class="nav-it" id="nav-history" onclick="switchTab('history')"><div class="nav-ico">📋</div><div class="nav-lbl">History</div></div>
+    <div class="nav-it" id="nav-search" onclick="switchTab('search')"><div class="nav-ico">🔍</div><div class="nav-lbl">Search</div></div>
+  </div>
+</div>
+
+<!-- ══════════════ DAY DETAIL OVERLAY ══════════════ -->
+<div class="overlay" id="day-overlay" onclick="closeSheet('day-overlay')">
+  <div class="sheet" onclick="event.stopPropagation()">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title" id="modal-date"></div>
+    <div class="sheet-sub" id="modal-cnt"></div>
+    <div class="modal-sum">
+      <div class="ms-box"><div class="ms-lbl">In</div><div class="ms-val" id="m-in" style="color:var(--green)"></div></div>
+      <div class="ms-box"><div class="ms-lbl">Out</div><div class="ms-val" id="m-out" style="color:var(--red)"></div></div>
+      <div class="ms-box"><div class="ms-lbl">Net</div><div class="ms-val" id="m-net"></div></div>
+    </div>
+    <div id="modal-entries"></div>
+    <button class="share-btn" onclick="shareDay()">📸 Image হিসেবে শেয়ার করুন / Share as Image</button>
+    <button class="close-btn" onclick="closeSheet('day-overlay')">বন্ধ করুন / Close</button>
+  </div>
+</div>
+
+<!-- ══════════════ EDIT OVERLAY ══════════════ -->
+<div class="overlay" id="edit-overlay" onclick="closeSheet('edit-overlay')">
+  <div class="sheet" onclick="event.stopPropagation()">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">এন্ট্রি সম্পাদনা / Edit Entry</div>
+    <div class="edit-type-row">
+      <button class="type-btn in" id="etbtn-in" onclick="setEditType('in')">↑ Cash In</button>
+      <button class="type-btn out" id="etbtn-out" onclick="setEditType('out')">↓ Cash Out</button>
+    </div>
+    <div class="fg-row">
+      <div class="fg"><div class="flabel">তারিখ / Date</div><input type="date" class="finput" id="e-date"></div>
+      <div class="fg"><div class="flabel">পরিমাণ / Amount ৳</div><input type="number" class="finput" id="e-amount" inputmode="decimal"></div>
+    </div>
+    <div class="fg"><div class="flabel">ব্যক্তি / Person</div><input type="text" class="finput" id="e-person"></div>
+    <div class="fg" style="margin-top:10px"><div class="flabel">বিবরণ / Details</div><input type="text" class="finput" id="e-detail"></div>
+    <button class="submit-btn" style="margin-top:14px" onclick="saveEdit()">সংরক্ষণ করুন / Save Changes</button>
+    <button class="close-btn" onclick="closeSheet('edit-overlay')">বাতিল / Cancel</button>
+  </div>
+</div>
+
+<!-- ══════════════ BACKUP OVERLAY ══════════════ -->
+<div class="overlay" id="bk-overlay" onclick="closeSheet('bk-overlay')">
+  <div class="sheet" onclick="event.stopPropagation()">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">ব্যাকআপ ও রিস্টোর</div>
+    <div class="sheet-sub">Backup & Restore</div>
+    <button class="bk-btn" onclick="exportJSON()"><span class="bk-icon">📥</span>ডাউনলোড করুন / Download Backup (JSON)</button>
+    <button class="bk-btn" onclick="document.getElementById('imp-file').click()"><span class="bk-icon">📤</span>রিস্টোর করুন / Restore from File</button>
+    <button class="bk-btn" onclick="saveGDrive()"><span class="bk-icon">🔵</span>Google Drive-এ সেভ করুন / Save to Google Drive</button>
+    <button class="bk-btn" onclick="loadGDrive()"><span class="bk-icon">🔵</span>Google Drive থেকে লোড করুন / Load from Drive</button>
+    <button class="bk-btn" onclick="changePIN()" style="color:var(--gold)"><span class="bk-icon">🔐</span>PIN পরিবর্তন করুন / Change PIN</button>
+    <input type="file" id="imp-file" accept=".json" style="display:none" onchange="importJSON(event)">
+    <button class="close-btn" onclick="closeSheet('bk-overlay')">বন্ধ / Close</button>
+  </div>
+</div>
+
+<!-- ══════════════ ADD ACCOUNT OVERLAY ══════════════ -->
+<div class="overlay" id="addacct-overlay" onclick="closeSheet('addacct-overlay')">
+  <div class="sheet" onclick="event.stopPropagation()">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">নতুন অ্যাকাউন্ট / New Account</div>
+    <div class="fg" style="margin-bottom:12px"><div class="flabel">অ্যাকাউন্টের নাম / Account Name</div><input type="text" class="finput" id="na-name" placeholder="যেমনঃ Business, Family..."></div>
+    <div class="fg" style="margin-bottom:14px">
+      <div class="flabel">আইকন / Icon</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px" id="icon-picker">
+        <span style="font-size:1.6rem;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent" class="icon-opt sel" data-icon="💼" onclick="selIcon(this)">💼</span>
+        <span style="font-size:1.6rem;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent" class="icon-opt" data-icon="🏠" onclick="selIcon(this)">🏠</span>
+        <span style="font-size:1.6rem;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent" class="icon-opt" data-icon="👨‍👩‍👧" onclick="selIcon(this)">👨‍👩‍👧</span>
+        <span style="font-size:1.6rem;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent" class="icon-opt" data-icon="🏪" onclick="selIcon(this)">🏪</span>
+        <span style="font-size:1.6rem;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent" class="icon-opt" data-icon="📦" onclick="selIcon(this)">📦</span>
+        <span style="font-size:1.6rem;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent" class="icon-opt" data-icon="🎓" onclick="selIcon(this)">🎓</span>
+        <span style="font-size:1.6rem;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent" class="icon-opt" data-icon="🚗" onclick="selIcon(this)">🚗</span>
+        <span style="font-size:1.6rem;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent" class="icon-opt" data-icon="💊" onclick="selIcon(this)">💊</span>
+      </div>
+    </div>
+    <button class="submit-btn" onclick="saveNewAcct()">অ্যাকাউন্ট তৈরি করুন / Create Account</button>
+    <button class="close-btn" style="margin-top:8px" onclick="closeSheet('addacct-overlay')">বাতিল / Cancel</button>
+  </div>
+</div>
+
+<!-- SHARE CANVAS -->
+<div id="share-el"></div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+<!-- OFFLINE BADGE -->
+<div id="offline-badge">📵 Offline Mode</div>
+
+</div><!-- #root -->
+
+<!-- INSTALL BANNER -->
+<div id="install-banner">
+  <div class="install-icon" style="font-family:serif;font-size:1.4rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#1a3da8,#3d7fff);flex-shrink:0;">৳</div>
+  <div class="install-text">
+    <div class="install-title">CashDiary ইনস্টল করুন</div>
+    <div class="install-sub">Add to Home Screen for app experience</div>
+  </div>
+  <button class="install-btn" id="install-btn" onclick="doInstall()">Install</button>
+  <button class="install-close" onclick="dismissInstall()">✕</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+let S = {
+  accounts: [
+    {id:'personal', name:'Personal', icon:'👤', color:'personal'},
+    {id:'professional', name:'Professional', icon:'💼', color:'professional'}
+  ],
+  currentAccount: 'personal',
+  entries: {},    // {accountId: [...entries]}
+  theme: 'dark'
+};
+let entryType = 'in';
+let editType = 'in';
+let editId = null;
+let modalDate = null;
+let searchType = 'date';
+
+// PIN state
+let pinBuf = '';
+let pinStep = 'enter'; // enter | setup1 | setup2
+let pinTmp = '';
+
+// ═══════════════════════════════════════
+// PERSISTENCE
+// ═══════════════════════════════════════
+function save() { localStorage.setItem('cd_state', JSON.stringify(S)); }
+function load() {
+  const d = localStorage.getItem('cd_state');
+  if (d) {
+    try {
+      const p = JSON.parse(d);
+      S = {...S, ...p};
+      // ensure defaults
+      if (!S.accounts) S.accounts = [{id:'personal',name:'Personal',icon:'👤',color:'personal'},{id:'professional',name:'Professional',icon:'💼',color:'professional'}];
+      if (!S.entries) S.entries = {};
+    } catch(e){}
+  }
+  S.accounts.forEach(a => { if (!S.entries[a.id]) S.entries[a.id] = []; });
+}
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+function init() {
+  load();
+  applyTheme();
+  document.getElementById('f-date').value = todayStr();
+  checkPIN();
+}
+
+function todayStr() { return new Date().toISOString().split('T')[0]; }
+
+// ═══════════════════════════════════════
+// PIN
+// ═══════════════════════════════════════
+function checkPIN() {
+  const pin = localStorage.getItem('cd_pin');
+  if (!pin) {
+    pinStep = 'setup1';
+    document.getElementById('pin-label').textContent = '৪ সংখ্যার PIN তৈরি করুন';
+    document.getElementById('pin-hint').textContent = 'প্রথমবার — আপনার পছন্দের ৪ সংখ্যার PIN সেট করুন।';
+  } else {
+    pinStep = 'enter';
+    document.getElementById('pin-label').textContent = 'PIN দিন / Enter PIN';
+    document.getElementById('pin-hint').textContent = '';
+  }
+}
+
+function pk(v) {
+  if (v === 'reset') { if (confirm('PIN রিসেট করবেন?')) { localStorage.removeItem('cd_pin'); pinBuf=''; pinStep='setup1'; pinTmp=''; document.getElementById('pin-label').textContent='নতুন PIN তৈরি করুন'; document.getElementById('pin-hint').textContent=''; document.getElementById('pin-error').textContent=''; updDots(); } return; }
+  if (v === 'del') { pinBuf = pinBuf.slice(0,-1); updDots(); return; }
+  if (pinBuf.length >= 4) return;
+  pinBuf += v; updDots();
+  if (pinBuf.length === 4) setTimeout(handlePIN, 150);
+}
+
+function updDots(err) {
+  for (let i=0;i<4;i++) {
+    const d = document.getElementById('pd'+i);
+    d.classList.toggle('filled', i < pinBuf.length);
+    d.classList.toggle('error', !!err);
+  }
+}
+
+function handlePIN() {
+  const saved = localStorage.getItem('cd_pin');
+  if (pinStep === 'setup1') {
+    pinTmp = pinBuf; pinBuf = ''; updDots();
+    pinStep = 'setup2';
+    document.getElementById('pin-label').textContent = 'আবার দিন / Confirm PIN';
+    document.getElementById('pin-hint').textContent = 'একই PIN আবার দিন।';
+    document.getElementById('pin-error').textContent = '';
+  } else if (pinStep === 'setup2') {
+    if (pinBuf === pinTmp) {
+      localStorage.setItem('cd_pin', pinBuf); unlockApp();
+    } else {
+      document.getElementById('pin-error').textContent = 'PIN মিলছে না / PINs do not match';
+      updDots(true); pinBuf=''; pinTmp=''; pinStep='setup1';
+      setTimeout(()=>{ updDots(); document.getElementById('pin-label').textContent='আবার তৈরি করুন'; },600);
+    }
+  } else {
+    if (pinBuf === saved) { unlockApp(); }
+    else {
+      document.getElementById('pin-error').textContent = 'ভুল PIN / Wrong PIN';
+      updDots(true); pinBuf='';
+      setTimeout(()=>{ updDots(); document.getElementById('pin-error').textContent=''; },600);
+    }
+  }
+}
+
+function unlockApp() {
+  document.getElementById('pin-screen').style.display = 'none';
+  document.getElementById('app').classList.add('show');
+  renderAll();
+}
+
+function changePIN() {
+  closeSheet('bk-overlay');
+  localStorage.removeItem('cd_pin');
+  pinBuf=''; pinStep='setup1'; pinTmp='';
+  document.getElementById('pin-label').textContent='নতুন PIN তৈরি করুন';
+  document.getElementById('pin-hint').textContent='';
+  document.getElementById('pin-error').textContent='';
+  updDots();
+  document.getElementById('pin-screen').style.display='flex';
+  document.getElementById('app').classList.remove('show');
+}
+
+// ═══════════════════════════════════════
+// THEME
+// ═══════════════════════════════════════
+function applyTheme() {
+  document.body.classList.toggle('light', S.theme === 'light');
+  document.getElementById('theme-btn').textContent = S.theme === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  S.theme = S.theme === 'dark' ? 'light' : 'dark';
+  save(); applyTheme();
+}
+
+// ═══════════════════════════════════════
+// ACCOUNT
+// ═══════════════════════════════════════
+function curAcct() { return S.accounts.find(a=>a.id===S.currentAccount) || S.accounts[0]; }
+function curEntries() { return S.entries[S.currentAccount] || []; }
+
+function openAcctScreen() {
+  renderAcctList();
+  document.getElementById('acct-screen').classList.add('show');
+}
+function closeAcctScreen() { document.getElementById('acct-screen').classList.remove('show'); }
+
+function renderAcctList() {
+  const el = document.getElementById('acct-list');
+  el.innerHTML = S.accounts.map(a => {
+    const es = S.entries[a.id] || [];
+    const bal = es.filter(e=>e.type==='in').reduce((s,e)=>s+e.amount,0) - es.filter(e=>e.type==='out').reduce((s,e)=>s+e.amount,0);
+    const isAct = a.id === S.currentAccount;
+    return `<div class="acct-card ${isAct?'active-acct':''}" onclick="switchAcct('${a.id}')">
+      <div class="acct-icon ${a.color||'custom'}">${a.icon}</div>
+      <div class="acct-info">
+        <div class="acct-name">${a.name}</div>
+        <div class="acct-balance">${es.length} entries · Balance: ${fmt(bal)}</div>
+      </div>
+      ${isAct ? '<div class="acct-check">✓</div>' : ''}
+      ${!['personal','professional'].includes(a.id) ? `<div class="e-btn del" onclick="event.stopPropagation();deleteAcct('${a.id}')" style="width:32px;height:32px;border:none;border-radius:8px;background:var(--red-bg);color:var(--red);font-size:0.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">🗑</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function switchAcct(id) {
+  S.currentAccount = id;
+  save(); closeAcctScreen();
+  renderAll();
+  showToast('অ্যাকাউন্ট পরিবর্তন / Account switched ✓');
+}
+
+function deleteAcct(id) {
+  if (!confirm('এই অ্যাকাউন্ট ও সব এন্ট্রি মুছবেন?\nDelete this account and all its entries?')) return;
+  S.accounts = S.accounts.filter(a=>a.id!==id);
+  delete S.entries[id];
+  if (S.currentAccount === id) S.currentAccount = S.accounts[0].id;
+  save(); renderAcctList(); renderAll();
+}
+
+let newAcctIcon = '💼';
+function openAddAcct() {
+  closeAcctScreen();
+  document.getElementById('na-name').value = '';
+  newAcctIcon = '💼';
+  document.querySelectorAll('.icon-opt').forEach(el=>el.style.borderColor='transparent');
+  document.querySelector('.icon-opt[data-icon="💼"]').style.borderColor='var(--accent)';
+  openSheet('addacct-overlay');
+}
+function selIcon(el) {
+  document.querySelectorAll('.icon-opt').forEach(e=>e.style.borderColor='transparent');
+  el.style.borderColor='var(--accent)';
+  newAcctIcon = el.dataset.icon;
+}
+function saveNewAcct() {
+  const name = document.getElementById('na-name').value.trim();
+  if (!name) { showToast('নাম দিন / Enter a name'); return; }
+  const id = 'acct_' + Date.now();
+  S.accounts.push({id, name, icon:newAcctIcon, color:'custom'});
+  S.entries[id] = [];
+  save();
+  closeSheet('addacct-overlay');
+  showToast('অ্যাকাউন্ট তৈরি হয়েছে / Account created ✓');
+  openAcctScreen();
+}
+
+// ═══════════════════════════════════════
+// ENTRIES
+// ═══════════════════════════════════════
+function setType(t) {
+  entryType = t;
+  document.getElementById('tbtn-in').classList.toggle('act', t==='in');
+  document.getElementById('tbtn-out').classList.toggle('act', t==='out');
+}
+function setEditType(t) {
+  editType = t;
+  document.getElementById('etbtn-in').classList.toggle('act', t==='in');
+  document.getElementById('etbtn-out').classList.toggle('act', t==='out');
+}
+
+function addEntry() {
+  const date = document.getElementById('f-date').value;
+  const amount = parseFloat(document.getElementById('f-amount').value);
+  const person = document.getElementById('f-person').value.trim();
+  const detail = document.getElementById('f-detail').value.trim();
+  if (!date || !amount || amount <= 0) { showToast('তারিখ ও পরিমাণ দিন / Enter date & amount'); return; }
+  if (!S.entries[S.currentAccount]) S.entries[S.currentAccount] = [];
+  S.entries[S.currentAccount].unshift({id:Date.now(), date, amount, type:entryType, person, detail});
+  save(); renderAll();
+  document.getElementById('f-amount').value='';
+  document.getElementById('f-person').value='';
+  document.getElementById('f-detail').value='';
+  showToast('এন্ট্রি যোগ হয়েছে / Entry added ✓');
+}
+
+function deleteEntry(id) {
+  if (!confirm('এই এন্ট্রি মুছবেন? / Delete this entry?')) return;
+  S.entries[S.currentAccount] = S.entries[S.currentAccount].filter(e=>e.id!==id);
+  save(); renderAll();
+  if (modalDate) openDayModal(modalDate);
+  showToast('মুছে গেছে / Deleted');
+}
+
+function openEdit(id) {
+  const e = curEntries().find(x=>x.id===id);
+  if (!e) return;
+  editId = id;
+  editType = e.type;
+  document.getElementById('e-date').value = e.date;
+  document.getElementById('e-amount').value = e.amount;
+  document.getElementById('e-person').value = e.person||'';
+  document.getElementById('e-detail').value = e.detail||'';
+  document.getElementById('etbtn-in').classList.toggle('act', e.type==='in');
+  document.getElementById('etbtn-out').classList.toggle('act', e.type==='out');
+  openSheet('edit-overlay');
+}
+
+function saveEdit() {
+  const date = document.getElementById('e-date').value;
+  const amount = parseFloat(document.getElementById('e-amount').value);
+  const person = document.getElementById('e-person').value.trim();
+  const detail = document.getElementById('e-detail').value.trim();
+  if (!date || !amount || amount <= 0) { showToast('তারিখ ও পরিমাণ দিন'); return; }
+  const idx = S.entries[S.currentAccount].findIndex(e=>e.id===editId);
+  if (idx !== -1) S.entries[S.currentAccount][idx] = {...S.entries[S.currentAccount][idx], date, amount, type:editType, person, detail};
+  save(); renderAll();
+  closeSheet('edit-overlay');
+  if (modalDate) openDayModal(modalDate);
+  showToast('সংরক্ষণ হয়েছে / Saved ✓');
+}
+
+// ═══════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════
+function fmt(n) { return '৳' + Number(n).toLocaleString('en-IN',{minimumFractionDigits:0,maximumFractionDigits:2}); }
+function fmtDate(d) { const dt=new Date(d+'T00:00:00'); return dt.toLocaleDateString('bn-BD',{day:'2-digit',month:'short',year:'numeric'}) + ' · ' + dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }
+function fmtDateShort(d) { const dt=new Date(d+'T00:00:00'); return dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }
+
+function renderAll() {
+  const a = curAcct();
+  // header
+  document.getElementById('hdr-acct-icon').textContent = a.icon;
+  document.getElementById('hdr-acct-name').textContent = a.name;
+  // summary
+  const es = curEntries();
+  const tIn = es.filter(e=>e.type==='in').reduce((s,e)=>s+e.amount,0);
+  const tOut = es.filter(e=>e.type==='out').reduce((s,e)=>s+e.amount,0);
+  const bal = tIn - tOut;
+  document.getElementById('sum-acct-lbl').textContent = a.name.toUpperCase() + ' ACCOUNT';
+  document.getElementById('sum-balance').textContent = fmt(bal);
+  document.getElementById('sum-in').textContent = fmt(tIn);
+  document.getElementById('sum-out').textContent = fmt(tOut);
+  // today
+  const tod = todayStr();
+  const todEs = es.filter(e=>e.date===tod);
+  const todEl = document.getElementById('today-list');
+  todEl.innerHTML = todEs.length ? todEs.map(entryHTML).join('') : '<div class="empty"><div class="empty-ico">📭</div>আজ কোনো এন্ট্রি নেই / No entries today</div>';
+}
+
+function entryHTML(e) {
+  return `<div class="entry">
+    <div class="e-icon ${e.type}">${e.type==='in'?'↑':'↓'}</div>
+    <div class="e-body">
+      <div class="e-detail">${e.detail||'—'}</div>
+      <div class="e-date">${fmtDateShort(e.date)}</div>
+      ${e.person?`<div class="e-person">👤 ${e.person}</div>`:''}
+    </div>
+    <div class="e-right">
+      <div class="e-amt ${e.type}">${e.type==='in'?'+':'-'}${fmt(e.amount)}</div>
+      <div class="e-actions">
+        <button class="e-btn edit" onclick="openEdit(${e.id})">✏️</button>
+        <button class="e-btn del" onclick="deleteEntry(${e.id})">🗑</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════
+function switchTab(t) {
+  ['home','history','search'].forEach(x => {
+    document.getElementById('tab-'+x).style.display = x===t ? '' : 'none';
+    document.getElementById('nav-'+x).classList.toggle('act', x===t);
+  });
+  if (t==='history') renderMonthly();
+  if (t==='search') { document.getElementById('s-input').value=''; document.getElementById('s-results').innerHTML='<div class="empty"><div class="empty-ico">🔍</div>Search করুন</div>'; }
+  document.getElementById('main-content').scrollTop = 0;
+}
+
+// ═══════════════════════════════════════
+// MONTHLY
+// ═══════════════════════════════════════
+function renderMonthly() {
+  const es = curEntries();
+  const months = {};
+  es.forEach(e => { const m=e.date.substring(0,7); if(!months[m])months[m]=[]; months[m].push(e); });
+  const keys = Object.keys(months).sort().reverse();
+  const el = document.getElementById('monthly-list');
+  if (!keys.length) { el.innerHTML='<div class="empty"><div class="empty-ico">📂</div>কোনো ইতিহাস নেই / No history yet</div>'; return; }
+  el.innerHTML = keys.map(m => {
+    const mes = months[m];
+    const mIn = mes.filter(e=>e.type==='in').reduce((s,e)=>s+e.amount,0);
+    const mOut = mes.filter(e=>e.type==='out').reduce((s,e)=>s+e.amount,0);
+    const net = mIn - mOut;
+    const dt = new Date(m+'-01');
+    const mName = dt.toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+    const bnName = dt.toLocaleDateString('bn-BD',{month:'long',year:'numeric'});
+    const dates = [...new Set(mes.map(e=>e.date))].sort().reverse();
+    const dHTML = dates.map(d => {
+      const dEs = mes.filter(e=>e.date===d);
+      const dIn=dEs.filter(e=>e.type==='in').reduce((s,e)=>s+e.amount,0);
+      const dOut=dEs.filter(e=>e.type==='out').reduce((s,e)=>s+e.amount,0);
+      const dn=dIn-dOut;
+      return `<div class="date-row" onclick="openDayModal('${d}')">
+        <div><div class="date-lbl">${fmtDateShort(d)}</div><div class="date-cnt">${dEs.length} এন্ট্রি / entries</div></div>
+        <div class="date-net" style="color:${dn>=0?'var(--green)':'var(--red)'}">${dn>=0?'+':''}${fmt(dn)}</div>
+      </div>`;
+    }).join('');
+    return `<div class="month-card" id="mc-${m}">
+      <div class="month-hdr" onclick="toggleMonth('${m}')">
+        <div class="month-icon">📅</div>
+        <div class="month-info">
+          <div class="month-name">${bnName} · ${mName} <span class="badge">${mes.length}</span></div>
+          <div class="month-nums"><span class="in">+${fmt(mIn)}</span> · <span class="out">-${fmt(mOut)}</span></div>
+        </div>
+        <div class="month-net" style="color:${net>=0?'var(--green)':'var(--red)'}">${net>=0?'+':''}${fmt(net)}</div>
+        <div class="month-chev">▾</div>
+      </div>
+      <div class="month-dates">${dHTML}</div>
+    </div>`;
+  }).join('');
+}
+function toggleMonth(m) { document.getElementById('mc-'+m).classList.toggle('open'); }
+
+// ═══════════════════════════════════════
+// DAY MODAL
+// ═══════════════════════════════════════
+function openDayModal(date) {
+  modalDate = date;
+  const es = curEntries().filter(e=>e.date===date);
+  const dIn=es.filter(e=>e.type==='in').reduce((s,e)=>s+e.amount,0);
+  const dOut=es.filter(e=>e.type==='out').reduce((s,e)=>s+e.amount,0);
+  const net=dIn-dOut;
+  document.getElementById('modal-date').textContent = fmtDate(date);
+  document.getElementById('modal-cnt').textContent = es.length + ' এন্ট্রি / entries';
+  document.getElementById('m-in').textContent = fmt(dIn);
+  document.getElementById('m-out').textContent = fmt(dOut);
+  document.getElementById('m-net').textContent = (net>=0?'+':'')+fmt(net);
+  document.getElementById('m-net').style.color = net>=0?'var(--green)':'var(--red)';
+  document.getElementById('modal-entries').innerHTML = es.map(entryHTML).join('');
+  openSheet('day-overlay');
+}
+
+// ═══════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════
+function setST(t) {
+  searchType = t;
+  document.getElementById('st-date').classList.toggle('act', t==='date');
+  document.getElementById('st-name').classList.toggle('act', t==='name');
+  document.getElementById('s-input').placeholder = t==='date' ? 'তারিখ লিখুন / e.g. 2025-01-15, Jan...' : 'নাম লিখুন / Enter person name...';
+  document.getElementById('s-input').value='';
+  document.getElementById('s-results').innerHTML='<div class="empty"><div class="empty-ico">🔍</div>Search করুন</div>';
+}
+
+function doSearch() {
+  const q = document.getElementById('s-input').value.trim().toLowerCase();
+  const el = document.getElementById('s-results');
+  if (!q) { el.innerHTML='<div class="empty"><div class="empty-ico">🔍</div>Search করুন</div>'; return; }
+  const es = curEntries();
+  if (searchType === 'date') {
+    const res = es.filter(e=>e.date.includes(q)||fmtDateShort(e.date).toLowerCase().includes(q));
+    if (!res.length) { el.innerHTML='<div class="empty">কোনো ফলাফল নেই / No results</div>'; return; }
+    const dates = [...new Set(res.map(e=>e.date))].sort().reverse();
+    el.innerHTML = `<div class="sec-title" style="margin-bottom:10px">${res.length} ফলাফল / result(s)</div>` +
+      dates.map(d=>`<div style="margin-bottom:10px"><div class="sec-title" style="margin-bottom:6px">${fmtDate(d)}</div>${res.filter(e=>e.date===d).map(entryHTML).join('')}</div>`).join('');
+  } else {
+    const res = es.filter(e=>e.person&&e.person.toLowerCase().includes(q));
+    if (!res.length) { el.innerHTML='<div class="empty">এই নামে কোনো এন্ট্রি নেই / No entries for this person</div>'; return; }
+    const tRec = res.filter(e=>e.type==='in').reduce((s,e)=>s+e.amount,0);
+    const tGave = res.filter(e=>e.type==='out').reduce((s,e)=>s+e.amount,0);
+    const personName = res[0].person;
+    const sorted = [...res].sort((a,b)=>b.date.localeCompare(a.date));
+    el.innerHTML = `<div class="person-card">
+      <div class="person-nm">👤 ${personName}</div>
+      <div class="person-stats">
+        <div class="pstat"><div class="pstat-lbl">তিনি দিয়েছেন / Received</div><div class="pstat-val" style="color:var(--green)">${fmt(tRec)}</div></div>
+        <div class="pstat"><div class="pstat-lbl">আপনি দিয়েছেন / Given</div><div class="pstat-val" style="color:var(--red)">${fmt(tGave)}</div></div>
+      </div>
+    </div>
+    <div class="sec-title" style="margin-bottom:10px">লেনদেনের ইতিহাস / Transaction History</div>` +
+    sorted.map(e=>`<div class="entry">
+      <div class="e-icon ${e.type}">${e.type==='in'?'↑':'↓'}</div>
+      <div class="e-body">
+        <div class="e-detail">${e.detail||'—'}</div>
+        <div class="e-date">${fmtDate(e.date)}</div>
+        <div class="e-person" style="color:${e.type==='in'?'var(--green)':'var(--red)'}">${e.type==='in'?'পেয়েছেন / Received from':'দিয়েছেন / Gave to'} ${e.person}</div>
+      </div>
+      <div class="e-amt ${e.type}">${e.type==='in'?'+':'-'}${fmt(e.amount)}</div>
+    </div>`).join('');
+  }
+}
+
+// ═══════════════════════════════════════
+// SHARE
+// ═══════════════════════════════════════
+function shareDay() {
+  if (!modalDate) return;
+  const es = curEntries().filter(e=>e.date===modalDate);
+  const dIn=es.filter(e=>e.type==='in').reduce((s,e)=>s+e.amount,0);
+  const dOut=es.filter(e=>e.type==='out').reduce((s,e)=>s+e.amount,0);
+  const net=dIn-dOut;
+  const a = curAcct();
+  const el = document.getElementById('share-el');
+  el.innerHTML = `<div style="width:360px;background:linear-gradient(135deg,#0d1f6e,#1a3da8,#0e2870);padding:28px;font-family:'Hind Siliguri',sans-serif;color:#fff;border-radius:20px;">
+    <div style="font-size:0.7rem;opacity:0.6;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">CashDiary · ${a.icon} ${a.name}</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:2px">${fmtDateShort(modalDate)}</div>
+    <div style="font-size:0.75rem;opacity:0.55;margin-bottom:18px">${es.length} এন্ট্রি</div>
+    <div style="display:flex;gap:8px;margin-bottom:18px">
+      <div style="flex:1;background:rgba(255,255,255,0.1);border-radius:10px;padding:10px"><div style="font-size:0.65rem;opacity:0.7">Cash In</div><div style="font-weight:700;color:#8fffd4;margin-top:2px">${fmt(dIn)}</div></div>
+      <div style="flex:1;background:rgba(255,255,255,0.1);border-radius:10px;padding:10px"><div style="font-size:0.65rem;opacity:0.7">Cash Out</div><div style="font-weight:700;color:#ffb3be;margin-top:2px">${fmt(dOut)}</div></div>
+      <div style="flex:1;background:rgba(255,255,255,0.1);border-radius:10px;padding:10px"><div style="font-size:0.65rem;opacity:0.7">Net</div><div style="font-weight:700;color:${net>=0?'#8fffd4':'#ffb3be'};margin-top:2px">${net>=0?'+':''}${fmt(net)}</div></div>
+    </div>
+    ${es.map(e=>`<div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center">
+      <div><div style="font-size:0.82rem">${e.detail||'—'}${e.person?' · '+e.person:''}</div><div style="font-size:0.68rem;opacity:0.5">${e.type==='in'?'Cash In':'Cash Out'}</div></div>
+      <div style="font-weight:700;font-size:0.9rem;color:${e.type==='in'?'#8fffd4':'#ffb3be'}">${e.type==='in'?'+':'-'}${fmt(e.amount)}</div>
+    </div>`).join('')}
+    <div style="margin-top:14px;font-size:0.65rem;opacity:0.35;text-align:center">Generated by CashDiary</div>
+  </div>`;
+  el.style.cssText = 'position:fixed;left:0;top:0;z-index:9999;opacity:1;';
+  html2canvas(el.firstElementChild,{scale:2,useCORS:true,backgroundColor:null}).then(c=>{
+    el.style.cssText='position:fixed;left:-9999px;top:0;z-index:-1;';
+    const link=document.createElement('a'); link.download='cashdiary-'+modalDate+'.png'; link.href=c.toDataURL('image/png'); link.click();
+    showToast('ছবি সেভ হয়েছে / Image saved 📸');
+  }).catch(()=>{ el.style.cssText='position:fixed;left:-9999px;'; showToast('Image তৈরি হয়নি'); });
+}
+
+// ═══════════════════════════════════════
+// BACKUP
+// ═══════════════════════════════════════
+function openBackup() { openSheet('bk-overlay'); }
+
+function exportJSON() {
+  const data = {state:S, exportedAt:new Date().toISOString(), v:2};
+  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='cashdiary-backup-'+todayStr()+'.json'; a.click();
+  showToast('ব্যাকআপ ডাউনলোড হয়েছে / Backup downloaded ✓');
+  closeSheet('bk-overlay');
+}
+
+function importJSON(ev) {
+  const file=ev.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=e=>{
+    try {
+      const d=JSON.parse(e.target.result);
+      if (d.state && d.state.accounts) {
+        if (confirm(`${d.state.accounts.length} অ্যাকাউন্ট রিস্টোর করবেন?\nRestore ${d.state.accounts.length} accounts? Current data will be replaced.`)) {
+          S={...S,...d.state}; save(); renderAll(); showToast('রিস্টোর সম্পন্ন / Restored ✓'); closeSheet('bk-overlay');
+        }
+      } else { showToast('ফাইল সঠিক নয় / Invalid file'); }
+    } catch { showToast('ফাইল পড়া যাচ্ছে না / Cannot read file'); }
+  };
+  r.readAsText(file); ev.target.value='';
+}
+
+function saveGDrive() {
+  closeSheet('bk-overlay');
+  const data = JSON.stringify({state:S,exportedAt:new Date().toISOString(),v:2});
+  const fileName = 'cashdiary-backup-'+todayStr()+'.json';
+  if (typeof google !== 'undefined' && google.accounts) {
+    showToast('Google Drive কানেক্ট হচ্ছে...');
+  } else {
+    // Fallback: download file with instructions
+    const blob=new Blob([data],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fileName; a.click();
+    showToast('ফাইল ডাউনলোড করুন ও Drive-এ আপলোড করুন');
+  }
+}
+
+function loadGDrive() {
+  closeSheet('bk-overlay');
+  showToast('Drive ফাইল পিক করতে "Restore from File" ব্যবহার করুন');
+}
+
+// ═══════════════════════════════════════
+// SHEET HELPERS
+// ═══════════════════════════════════════
+function openSheet(id) { document.getElementById(id).classList.add('show'); }
+function closeSheet(id) { document.getElementById(id).classList.remove('show'); }
+
+// ═══════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════
+let toastT;
+function showToast(msg) {
+  const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2500);
+}
+
+// ═══════════════════════════════════════
+// PWA — SERVICE WORKER + INSTALL
+// ═══════════════════════════════════════
+let deferredPrompt = null;
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    (function(){
+      var swCode = `
+const CACHE='cashdiary-v2';
+const ASSETS=[location.href];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS).catch(()=>{})));self.skipWaiting();});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim();});
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(cached=>{const net=fetch(e.request).then(r=>{if(r&&r.status===200){const cl=r.clone();caches.open(CACHE).then(c=>c.put(e.request,cl));}return r;}).catch(()=>cached);return cached||net;}));});
+      `;
+      var blob = new Blob([swCode],{type:'application/javascript'});
+      var swUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(swUrl).then(reg=>console.log('SW ready')).catch(e=>console.log('SW:',e));
+    })();
+  });
+}
+
+// Capture install prompt
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show banner after 2 seconds if not dismissed
+  const dismissed = localStorage.getItem('cd_install_dismissed');
+  if (!dismissed) {
+    setTimeout(() => document.getElementById('install-banner').classList.add('show'), 2000);
+  }
+});
+
+function doInstall() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(result => {
+      if (result.outcome === 'accepted') {
+        showToast('ইনস্টল হচ্ছে / Installing... ✓');
+        document.getElementById('install-banner').classList.remove('show');
+      }
+      deferredPrompt = null;
+    });
+  } else {
+    // iOS fallback instructions
+    showIOSInstallGuide();
+  }
+}
+
+function dismissInstall() {
+  document.getElementById('install-banner').classList.remove('show');
+  localStorage.setItem('cd_install_dismissed', '1');
+}
+
+// iOS install guide
+function showIOSInstallGuide() {
+  const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+  if (isIOS) {
+    alert('iOS তে ইনস্টল করতে:\n\nSafari এ খুলুন → নিচের Share বাটন ট্যাপ করুন → "Add to Home Screen" সিলেক্ট করুন।\n\nTo install on iOS:\nOpen in Safari → Tap Share button → Select "Add to Home Screen"');
+  } else {
+    alert('ইনস্টল করতে ব্রাউজার মেনু খুলুন এবং "Add to Home Screen" বা "Install App" সিলেক্ট করুন।\n\nOpen browser menu → "Add to Home Screen" or "Install App"');
+  }
+}
+
+// App installed event
+window.addEventListener('appinstalled', () => {
+  showToast('CashDiary ইনস্টল হয়েছে / Installed successfully! 🎉');
+  document.getElementById('install-banner').classList.remove('show');
+  deferredPrompt = null;
+});
+
+// Offline/online detection
+window.addEventListener('offline', () => { document.getElementById('offline-badge').style.display='block'; });
+window.addEventListener('online', () => { document.getElementById('offline-badge').style.display='none'; showToast('অনলাইন / Back online ✓'); });
+
+// ═══════════════════════════════════════
+// START
+// ═══════════════════════════════════════
+init();
+</script>
+</body>
+</html>
